@@ -5,6 +5,7 @@
 // функцию, которая подсчитывает количество локальных минимумов 
 // и максимумов.
 #include "logic.h"
+#include <cmath>
 
 void count_local_min_and_max(int* array, int size, int* min_count, int* max_count) {
 	*min_count = 0;
