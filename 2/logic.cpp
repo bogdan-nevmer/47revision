@@ -6,16 +6,17 @@
 
 
 double calculate_arithmetical_mean_of_nonsero_elements(int* array, int size) {
-	int cnt = 0;
-	double avg=0;
+	int  count= 0;
+	double sum=0;
 	for (int i = 0; i < size; ++i)
 	{
 		if (array[i] != 0) {
-			++cnt;
-			avg += array[i];
+			sum += array[i];
+			count++;
+			
 		}
 	
-		avg /= cnt;
+		
 	}
-	return avg;
+	return count >0 ? sum /= count : 0;
 }
