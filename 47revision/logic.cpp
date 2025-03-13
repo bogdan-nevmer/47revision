@@ -5,48 +5,61 @@
 // максимальным по модулю и минимальным по модулю элементами.
 #include "logic.h"
 
+int absolut(int number) {
+
+	return number < 0 ? -number : number;
+
+}
+
+
+int get_first_max_index(int* array, int size) {
+	int index = 0;
+
+	for (int i = 1; i < size; i++)
+	{
+		if (absolut(array[i])>absolut(array[index])) {
+			index = i;
+
+		}
+	}
+
+	return index;
+}
+
+
+int get_first_min_index(int* array, int size) {
+	int index = 0;
+
+	for (int i = 1; i < size; i++)
+	{
+		if (absolut(array[i]) < absolut(array[index])) {
+			index = i;
+
+		}
+	}
+
+	return index;
+}
+
 
 
 int sum_between_first_min_max(int* array, int size){
-	int max = array[0];
-	int max_index = -1;
-	int min = array[0];
-	int min_index = -1;
-
-
 	
-	
+	int imax = get_first_max_index(array, size);
+	int imin = get_first_min_index(array, size);
 
-
-	
-	for (int i = 0; i < size; i++)
-	{
-		if (abs(array[i]) > abs(array[index])) {
-			max = array[i];
-			max_index = i;
-		}
-	}
-
-
-	for (int i = 0; i < size; i++)
-	{
-		if (abs(array[i]) < abs(array[index])) {
-			min = array[i];
-			min_index = i;
-
-		}
-	}
-
-	if (min_index > max_index) {
-		int t = min_index;
-		min_index = max_index;
-		max_index = 0;
+	if (imin>imax) {
+		int t = imin;
+		imin = imax;
+		imax = t;
 	}
 
 	int sum = 0;
-	for (int i = min_index; i < max_index; i++)
+
+	for (int i = imin+1; i < imax; i++)
 	{
 		sum += array[i];
 	}
+
 	return sum;
 }
